@@ -1,0 +1,19 @@
+{
+  "name": "my-app",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild --bundle --outfile=./dist/index.js --platform=node --target=node20 ./src/index.ts",
+    "zip": "zip -j lambda.zip dist/index.js",
+    "update": "aws lambda update-function-code --zip-file fileb://lambda.zip --function-name hello",
+    "deploy": "run-s build zip update"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.4",
+    "npm-run-all2": "^6.2.0"
+  },
+  "dependencies": {
+    "@copilot-extensions/preview-sdk": "^5.0.1",
+    "@octokit/core": "^6.1.2",
+    "hono": "^4.6.5"
+  }
+}
